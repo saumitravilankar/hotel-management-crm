@@ -3,10 +3,12 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 interface ThemeInitialState {
   sidebar: boolean;
+  lockMenu: boolean;
 }
 
 const initialState: ThemeInitialState = {
   sidebar: true,
+  lockMenu: false,
 };
 
 export const themeSlice = createSlice({
@@ -16,12 +18,17 @@ export const themeSlice = createSlice({
     toggleSidebar(state, action: PayloadAction<boolean>) {
       state.sidebar = action.payload;
     },
+    toggleLockMenu(state, action: PayloadAction<boolean>) {
+      state.lockMenu = action.payload;
+    },
   },
 });
 
-export const { toggleSidebar } = themeSlice.actions;
+export const { toggleSidebar, toggleLockMenu } = themeSlice.actions;
 
 export const selectCurrentSidebarState = (state: RootState) =>
   state.theme.sidebar;
+export const selectLockMenu = (state: RootState) =>
+  state.theme.lockMenu;
 
 export default themeSlice.reducer;
